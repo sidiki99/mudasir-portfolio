@@ -13,7 +13,7 @@ const services = [
     image: project1,
     title: "Modern Portfolio Website",
     tech: ["CSS", "Javascript", "React Js"],
-    link: "https://eat-n-split-nu-lemon.vercel.app/",
+    link: "https://mudasir-portfolio-nine.vercel.app/",
   },
   {
     image: project2,
@@ -25,7 +25,7 @@ const services = [
     image: project3,
     title: "E-Commerce Store",
     tech: ["React", "Node JS", "MongoDB"],
-     link: "https://eat-n-split-nu-lemon.vercel.app/",
+     link: "https://mudasir-portfolio-nine.vercel.app/",
   },
 ];
 export default function Projects({containerVariants,cardVariants}) {
