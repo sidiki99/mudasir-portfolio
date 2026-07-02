@@ -116,13 +116,15 @@ body{
 }
 .profile_img {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  /* justify-content: center;
+  align-items: center; */
   margin: 5px 0;
   width: 300px;
   height: 250px;
    object-fit: cover;
    border-radius: 10%;
+  object-position: top center;
+  
 }
 .loc_detail{
   text-align: center;

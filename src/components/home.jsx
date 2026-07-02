@@ -14,7 +14,7 @@ const containerVariants = {
 const cardVariants = {
   hidden: {
     opacity: 0,
-    y: 80,
+    y: 120,
   },
   show: {
     opacity: 1,

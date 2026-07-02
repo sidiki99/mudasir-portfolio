@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 
 import project1 from "../assets/portfolio.jpeg";
 import project2 from "../assets/eat_split.jpg";
-import project3 from "../assets/portfolio.jpeg";
+import project3 from "../assets/smarthire.jpeg";
 
 const services = [
   {
@@ -23,9 +23,9 @@ const services = [
   },
   {
     image: project3,
-    title: "E-Commerce Store",
-    tech: ["React", "Node JS", "MongoDB"],
-     link: "https://mudasir-portfolio-nine.vercel.app/",
+    title: "Job Portal and Admin Panel",
+    tech: ["React", "Javascript", "CSS"],
+     link: "https://react-smart-hire-ftiz.vercel.app/",
   },
 ];
 export default function Projects({containerVariants,cardVariants}) {

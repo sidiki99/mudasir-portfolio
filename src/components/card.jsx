@@ -25,7 +25,7 @@ export default function Card({onHireClick}) {
                   React  Developer 
                </div>
             </div>
-            <img src="/profile.jpg" alt="Profile"  className={styles.profile_img}/>
+            <img src="/portfolio6.jpeg" alt="Profile"  className={styles.profile_img}/>
             <div className={styles.loc_detail}>
             <p>msidiki075@gmail.com</p>
             <p>Based in Lodhran ,Pakistan</p>

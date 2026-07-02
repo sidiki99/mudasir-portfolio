@@ -1,39 +1,74 @@
-// import styles from './home.module.css';
-// import { FaEnvelope } from 'react-icons/fa';
-// export default function Contact() {
-//   return (
-//     <div>
-//       <div className={styles.about_section}>
-//              <div className={styles.gen_btn}>
-//                 <FaEnvelope className="icon" />
-//                 <span>Contact us</span>
-//               </div>
-//               <div>
-//                         <p className={styles.about}>
-//                           Let's Work
-//                           <span style={{color:"#28E98C"}}> Together</span>
-//                           <p style={{
-//                             fontSize:"29px",
-                            
-//                           }}>  msidiki075@gmail.com
-//                           </p>
-                   
-//                         </p>
-                        
-                                 
-//              </div>
-//       </div>
-      
-//     </div>
-//   )
-// }
+import { useState } from "react";
+import emailjs from "@emailjs/browser";
 
 import style from "./home.module.css";
 import styles from "./contact.module.css";
-import { FaCloudUploadAlt,FaEnvelope } from "react-icons/fa";
+
+import { FaCloudUploadAlt, FaEnvelope } from "react-icons/fa";
 import { motion } from "framer-motion";
 
-export default function Contact({containerVariants,cardVariants}) {
+export default function Contact({ containerVariants, cardVariants }) {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    subject: "",
+    budget: "",
+    company: "",
+    message: "",
+  });
+
+  const [loading, setLoading] = useState(false);
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    setLoading(true);
+
+    emailjs
+      .send(
+        "service_l6qpkt9",
+        "template_9a1u0wi",
+        {
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          subject: formData.subject,
+          budget: formData.budget,
+          company: formData.company,
+          message: formData.message,
+        },
+        "VAiGVmALdL_2RlAnp"
+      )
+      .then(() => {
+        alert("Message Sent Successfully!");
+
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          subject: "",
+          budget: "",
+          company: "",
+          message: "",
+        });
+
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.log(error);
+        alert("Failed to send message.");
+        setLoading(false);
+      });
+  };
+
   return (
     <section className={styles.contact}>
       <motion.div
@@ -43,82 +78,134 @@ export default function Contact({containerVariants,cardVariants}) {
         whileInView="show"
         viewport={{ once: false, amount: 0.2 }}
       >
-      <motion.div variants={cardVariants}>
-        <div className={style.gen_btn}>
-              <FaEnvelope className="icon" />
-                <span>Contact us</span>
-      </div>
-       <div>
-                        <p className={style.about}>
-                         Let's Work
-                        <span style={{color:"#28E98C"}}> Together</span>
-                         <p style={{
-                           fontSize:"29px",
-                            
-                          }}>  msidiki075@gmail.com
-                         </p>
-                   
-                       </p>
-                        
-                                 
-            </div>
-      </motion.div>
-            </motion.div>
-          
-      <form className={styles.form}>
+        <motion.div variants={cardVariants}>
+          <div className={style.gen_btn}>
+            <FaEnvelope className="icon" />
+            <span>Contact us</span>
+          </div>
 
+          <div>
+            <p className={style.about}>
+              Let's Work
+              <span style={{ color: "#28E98C" }}> Together</span>
+            </p>
+
+            <p
+              style={{
+                fontSize: "29px",
+              }}
+            >
+              msidiki075@gmail.com
+            </p>
+          </div>
+        </motion.div>
+      </motion.div>
+
+      <form className={styles.form} onSubmit={handleSubmit}>
         <div className={styles.inputGroup}>
-          <label>FULL NAME <span>*</span></label>
-          <input type="text" placeholder="Your full name" />
+          <label>
+            FULL NAME <span>*</span>
+          </label>
+          <input
+            type="text"
+            name="name"
+            placeholder="Your full name"
+            value={formData.name}
+            onChange={handleChange}
+            required
+          />
         </div>
 
         <div className={styles.inputGroup}>
-          <label>EMAIL <span>*</span></label>
-          <input type="email" placeholder="Your email address" />
+          <label>
+            EMAIL <span>*</span>
+          </label>
+          <input
+            type="email"
+            name="email"
+            placeholder="Your email address"
+            value={formData.email}
+            onChange={handleChange}
+            required
+          />
         </div>
 
         <div className={styles.inputGroup}>
           <label>PHONE (OPTIONAL)</label>
-          <input type="text" placeholder="Your number phone" />
+          <input
+            type="text"
+            name="phone"
+            placeholder="Your phone number"
+            value={formData.phone}
+            onChange={handleChange}
+          />
         </div>
 
         <div className={styles.inputGroup}>
-          <label>SUBJECT <span>*</span></label>
-          <input type="text" placeholder="Subject" />
+          <label>
+            SUBJECT <span>*</span>
+          </label>
+          <input
+            type="text"
+            name="subject"
+            placeholder="Subject"
+            value={formData.subject}
+            onChange={handleChange}
+            required
+          />
         </div>
 
         <div className={styles.inputGroup}>
           <label>YOUR BUDGET (OPTIONAL)</label>
-          <input type="text" placeholder="A range budget for your project" />
+          <input
+            type="text"
+            name="budget"
+            placeholder="A range budget for your project"
+            value={formData.budget}
+            onChange={handleChange}
+          />
         </div>
 
         <div className={styles.inputGroup}>
           <label>COMPANY (OPTIONAL)</label>
-          <input type="text" placeholder="Company name" />
+          <input
+            type="text"
+            name="company"
+            placeholder="Company name"
+            value={formData.company}
+            onChange={handleChange}
+          />
         </div>
 
         <div className={`${styles.inputGroup} ${styles.full}`}>
           <label>MESSAGE</label>
           <textarea
             rows="6"
-            placeholder="Write your message here ..."
-          ></textarea>
+            name="message"
+            placeholder="Write your message here..."
+            value={formData.message}
+            onChange={handleChange}
+            required
+          />
         </div>
 
+        {/* EmailJS doesn't support file uploads directly */}
         <div className={styles.full}>
           <label className={styles.upload}>
             <FaCloudUploadAlt />
-            <span>Add an attachment</span>
-            <input type="file" hidden />
+            <span>Attachment not supported with EmailJS</span>
           </label>
         </div>
 
         <div className={styles.full}>
-          <button type="submit" className={styles.btn}>
-            SEND MESSAGE
+          <button
+            type="submit"
+            className={styles.btn}
+            disabled={loading}
+          >
+            {loading ? "SENDING..." : "SEND MESSAGE"}
           </button>
         </div>
-
       </form>
     </section>
   );
